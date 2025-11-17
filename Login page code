@@ -1,0 +1,167 @@
+import React, { useState } from "react";
+import {
+View,
+Text,
+TextInput,
+TouchableOpacity,
+StyleSheet,
+Image
+} from "react-native";
+
+export default function LoginScreen() {
+const [email, setEmail] = useState("");
+
+return (
+<View style={styles.container}>
+
+<Text style={styles.title}>Welcome!</Text>
+
+<Text style={styles.subtitle}>Create an account</Text>
+<Text style={styles.desc}>Enter your email to sign up for this app</Text>
+
+{/* Email Input */}
+<TextInput
+style={styles.input}
+placeholder="email@domain.com"
+placeholderTextColor="#999"
+value={email}
+onChangeText={setEmail}
+/>
+
+{/* Continue Button */}
+<TouchableOpacity style={styles.continueBtn}>
+<Text style={styles.continueText}>Continue</Text>
+</TouchableOpacity>
+
+{/* OR Divider */}
+<View style={styles.orRow}>
+<View style={styles.line} />
+<Text style={styles.orText}>or</Text>
+<View style={styles.line} />
+</View>
+
+{/* Google Button */}
+<TouchableOpacity style={styles.socialBtn}>
+<Text style={styles.socialText}>G Continue with Google</Text>
+</TouchableOpacity>
+
+{/* Apple Button */}
+<TouchableOpacity style={styles.socialBtn}>
+<Text style={styles.socialText}> Continue with Apple</Text>
+</TouchableOpacity>
+
+{/* Terms */}
+<Text style={styles.terms}>
+By clicking continue, you agree to our
+<Text style={styles.link}> Terms of Service </Text>
+and
+<Text style={styles.link}> Privacy Policy</Text>
+</Text>
+
+{/* Bee Graphic */}
+<Image
+source={require("../assets/bee.png")}
+style={styles.bee}
+resizeMode="contain"
+/>
+
+</View>
+);
+}
+
+const styles = StyleSheet.create({
+container: {
+flex: 1,
+backgroundColor: "#FFF7C8",
+alignItems: "center",
+paddingHorizontal: 30,
+paddingTop: 90,
+},
+title: {
+fontSize: 42,
+fontWeight: "700",
+marginBottom: 20,
+color: "#000",
+textAlign: "center",
+},
+subtitle: {
+fontSize: 20,
+fontWeight: "600",
+textAlign: "center",
+marginBottom: 5,
+},
+desc: {
+fontSize: 14,
+color: "#333",
+marginBottom: 20,
+textAlign: "center",
+},
+input: {
+width: "100%",
+backgroundColor: "#fff",
+height: 50,
+borderRadius: 8,
+paddingHorizontal: 15,
+borderColor: "#ddd",
+borderWidth: 1,
+marginBottom: 15,
+},
+continueBtn: {
+width: "100%",
+backgroundColor: "#000",
+paddingVertical: 14,
+borderRadius: 8,
+alignItems: "center",
+marginBottom: 20,
+},
+continueText: {
+color: "#fff",
+fontSize: 16,
+fontWeight: "600",
+},
+orRow: {
+flexDirection: "row",
+alignItems: "center",
+marginVertical: 15,
+width: "100%",
+},
+line: {
+flex: 1,
+height: 1,
+backgroundColor: "#999",
+},
+orText: {
+marginHorizontal: 10,
+color: "#555",
+},
+socialBtn: {
+width: "100%",
+backgroundColor: "#fff",
+paddingVertical: 14,
+borderRadius: 8,
+borderWidth: 1,
+borderColor: "#ddd",
+alignItems: "center",
+marginBottom: 12,
+},
+socialText: {
+fontSize: 15,
+color: "#000",
+},
+terms: {
+fontSize: 12,
+textAlign: "center",
+color: "#444",
+marginTop: 20,
+paddingHorizontal: 20,
+},
+link: {
+color: "#000",
+fontWeight: "600",
+},
+bee: {
+width: 130,
+height: 130,
+marginTop: 40,
+}
+});
