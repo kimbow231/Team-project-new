@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard Mobile</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Use Inter font -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background for the overall environment */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+        }
+        /* Mobile Screen Container Styling */
+        .mobile-screen {
+            width: 100%;
+            max-width: 400px; /* Standard mobile width */
+            height: 800px; /* Fixed height for wireframe feel */
+            border: 8px solid #374151; /* Dark border to resemble a phone frame */
+            border-radius: 40px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+        }
+        /* Hide scrollbar for the content area */
+        .scrollable-content::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollable-content {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="mobile-screen">
+        <!-- 1. Universal Header (Top Status Bar) -->
+        <header class="p-3 bg-white border-b border-gray-100">
+            <div class="flex justify-between items-center text-sm font-medium">
+                <span class="font-bold">9:41</span>
+                <div class="flex space-x-1">
+                    <!-- Wifi Icon Placeholder -->
+                    <svg class="w-4 h-4 text-gray-800" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+                    <!-- Battery Icon Placeholder -->
+                    <svg class="w-4 h-4 text-gray-800" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4h-3V2h-2v2H7V2H5v2H2v16h20V4zm-2 14H4V6h16v12z"/></svg>
+                </div>
+            </div>
+        </header>
+
+        <!-- 2. Main Content Area (Scrollable) -->
+        <main id="app-content" class="flex-grow scrollable-content overflow-y-auto bg-gray-50">
+
+            <!-- ============================================== -->
+            <!-- HOME PAGE VIEW -->
+            <!-- ============================================== -->
+            <section id="homepage" class="page-view p-5 space-y-6">
+                <div class="text-center space-y-1">
+                    <div class="flex justify-center items-center space-x-2">
+                        <img src="https://placehold.co/40x40/fcd34d/92400e?text=👑" alt="Crown Icon" class="w-10 h-10 rounded-full shadow-lg">
+                        <h1 class="text-xl font-semibold text-gray-800">Welcome!</h1>
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-900">Admin Homepage</h2>
+                </div>
+
+                <!-- Stats Section -->
+                <div class="bg-white p-5 rounded-2xl shadow-lg border border-gray-100">
+                    <h3 class="text-lg font-bold text-gray-700 mb-3">Stats:</h3>
+                    <ul class="space-y-2 text-blue-600 font-medium">
+                        <li><a href="#" class="hover:underline">Click to view total users</a></li>
+                        <li><a href="#" class="hover:underline">Click to view pending requests</a></li>
+                        <li><a href="#" class="hover:underline">Click to view blocked/reported users</a></li>
+                        <li><a href="#" class="hover:underline">Click to view all deadlines</a></li>
+                    </ul>
+                </div>
+
+                <!-- Global Announcement -->
+                <div class="bg-white p-5 rounded-2xl shadow-lg border border-gray-100">
+                    <h3 class="text-lg font-bold text-gray-700 mb-3">Global Announcement:</h3>
+                    <div class="flex space-x-2">
+                        <input type="text" placeholder="Type announcement here..." class="flex-grow p-3 border border-gray-300 rounded-xl focus:ring-blue-500 focus:border-blue-500 text-sm">
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl shadow-md transition duration-150 ease-in-out">
+                            Send
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Most Used Subjects -->
+                <div class="bg-white p-5 rounded-2xl shadow-lg border border-gray-100">
+                    <h3 class="text-lg font-bold text-gray-700 mb-4">Most Used Subjects:</h3>
+                    <div class="flex justify-around space-x-4">
+                        <!-- Chemistry -->
+                        <div class="flex flex-col items-center text-center p-3 rounded-xl hover:bg-gray-50 transition duration-150 w-1/2">
+                            <!-- Icon Placeholder: Beaker -->
+                            <svg class="w-12 h-12 text-blue-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2m-4 0V3m0 2v4m0 0l-1.5-1.5M12 9l1.5-1.5M12 9v4m0 0l-1.5 1.5M12 13l1.5 1.5"/></svg>
+                            <p class="font-semibold text-gray-900">Chemistry</p>
+                            <p class="text-sm text-gray-500">10451 Sets</p>
+                        </div>
+                        <!-- Economics -->
+                        <div class="flex flex-col items-center text-center p-3 rounded-xl hover:bg-gray-50 transition duration-150 w-1/2">
+                            <!-- Icon Placeholder: Globe/World -->
+                            <svg class="w-12 h-12 text-green-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h2m-2 2h4m-4 2h6m4-4V5a2 2 0 00-2-2H4a2 2 0 00-2 2v16l3-1.5 3 1.5 3-1.5 3 1.5 3-1.5 3 1.5V5a2 2 0 00-2-2h-2m-4 0V3m0 2v4m0 0l-1.5-1.5M12 9l1.5-1.5M12 9v4m0 0l-1.5 1.5M12 13l1.5 1.5"/></svg>
+                            <p class="font-semibold text-gray-900">Economics</p>
+                            <p class="text-sm text-gray-500">9949 Sets</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============================================== -->
+            <!-- SOCIAL PAGE VIEW -->
+            <!-- ============================================== -->
+            <section id="socialpage" class="page-view p-5 space-y-6 hidden">
+                <div class="text-center space-y-1">
+                    <div class="flex justify-center items-center space-x-2">
+                        <img src="https://placehold.co/40x40/fcd34d/92400e?text=👑" alt="Crown Icon" class="w-10 h-10 rounded-full shadow-lg">
+                        <h1 class="text-xl font-semibold text-gray-800">Welcome!</h1>
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-900">Admin Social Page</h2>
+                </div>
+
+                <!-- User Activity Graph -->
+                <div class="bg-white p-5 rounded-2xl shadow-lg border border-gray-100 space-y-4">
+                    <h3 class="text-lg font-bold text-gray-700">Users:</h3>
+                    <!-- Graph Placeholder Image -->
+                    <img src="https://placehold.co/350x150/e0f2fe/0369a1?text=User+Activity+Growth+Chart" alt="User Growth Chart Placeholder" class="w-full h-auto rounded-lg border border-blue-200">
+                    <div class="text-center">
+                        <p class="text-xl font-bold text-green-600">254,992</p>
+                        <p class="text-sm text-gray-500">Active Users (±2 weeks inactivity)</p>
+                        <p class="text-xs text-gray-400 font-medium">(+0.04% vs. previous period)</p>
+                    </div>
+                </div>
+
+                <!-- Most Popular Users -->
+                <div class="bg-white p-5 rounded-2xl shadow-lg border border-gray-100">
+                    <h3 class="text-lg font-bold text-gray-700 mb-4">Most Popular Users:</h3>
+                    <div class="grid grid-cols-3 gap-3">
+                        <!-- User 1 -->
+                        <div class="flex flex-col items-center p-2 rounded-lg text-center hover:bg-gray-50 transition">
+                            <img src="https://placehold.co/60x60/f87171/ffffff?text=U1" alt="User 1" class="w-12 h-12 rounded-full mb-1 border-2 border-red-400">
+                            <p class="text-sm font-semibold text-gray-900 truncate w-full">@LockInTwittr</p>
+                            <button class="text-xs text-white bg-red-500 hover:bg-red-600 px-3 py-1 rounded-full mt-1">
+                                Follow
+                            </button>
+                        </div>
+                        <!-- User 2 -->
+                        <div class="flex flex-col items-center p-2 rounded-lg text-center hover:bg-gray-50 transition">
+                            <img src="https://placehold.co/60x60/34d399/ffffff?text=U2" alt="User 2" class="w-12 h-12 rounded-full mb-1 border-2 border-green-400">
+                            <p class="text-sm font-semibold text-gray-900 truncate w-full">@B67Chem</p>
+                            <button class="text-xs text-white bg-green-500 hover:bg-green-600 px-3 py-1 rounded-full mt-1">
+                                Follow
+                            </button>
+                        </div>
+                        <!-- User 3 -->
+                        <div class="flex flex-col items-center p-2 rounded-lg text-center hover:bg-gray-50 transition">
+                            <img src="https://placehold.co/60x60/60a5fa/ffffff?text=U3" alt="User 3" class="w-12 h-12 rounded-full mb-1 border-2 border-blue-400">
+                            <p class="text-sm font-semibold text-gray-900 truncate w-full">@MathRox</p>
+                            <button class="text-xs text-white bg-blue-500 hover:bg-blue-600 px-3 py-1 rounded-full mt-1">
+                                Follow
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============================================== -->
+            <!-- CALENDAR PAGE VIEW -->
+            <!-- ============================================== -->
+            <section id="calendarpage" class="page-view p-5 space-y-6 hidden">
+                <div class="text-center space-y-1">
+                    <div class="flex justify-center items-center space-x-2">
+                        <img src="https://placehold.co/40x40/fcd34d/92400e?text=👑" alt="Crown Icon" class="w-10 h-10 rounded-full shadow-lg">
+                        <h1 class="text-xl font-semibold text-gray-800">Welcome!</h1>
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-900">Admin Calendar Page</h2>
+                </div>
+
+                <!-- Deadlines List -->
+                <div class="bg-white p-5 rounded-2xl shadow-lg border border-gray-100">
+                    <h3 class="text-lg font-bold text-gray-700 mb-4">Deadlines:</h3>
+                    <div class="overflow-y-auto h-96">
+                        <!-- Monday -->
+                        <div class="mb-5 border-b pb-3">
+                            <h4 class="text-md font-bold text-gray-900 mb-2">Monday (10/13/25):</h4>
+                            <p class="text-sm text-red-600 font-semibold mb-1">10558 Deadlines Reported</p>
+                            <ul class="text-sm space-y-1 ml-4 list-disc text-gray-700">
+                                <li class="text-red-500">Exams: 5061</li>
+                                <li>Quizzes: 2345</li>
+                                <li>Assignments: 1120</li>
+                                <li>Projects: 890</li>
+                                <li>Papers: 812</li>
+                                <li class="text-blue-600"><a href="#" class="hover:underline">Click to view full report</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Tuesday -->
+                        <div class="mb-5 border-b pb-3">
+                            <h4 class="text-md font-bold text-gray-900 mb-2">Tuesday (10/14/25):</h4>
+                            <p class="text-sm text-red-600 font-semibold mb-1">15000 Deadlines Reported</p>
+                            <ul class="text-sm space-y-1 ml-4 list-disc text-gray-700">
+                                <li class="text-red-500">Exams: 8741</li>
+                                <li>Quizzes: 4167</li>
+                                <li>Assignments: 670</li>
+                                <li>Projects: 203</li>
+                                <li>Papers: 156</li>
+                                <li class="text-blue-600"><a href="#" class="hover:underline">Click to view full report</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Wednesday -->
+                        <div class="mb-5 border-b pb-3">
+                            <h4 class="text-md font-bold text-gray-900 mb-2">Wednesday (10/15/25):</h4>
+                            <p class="text-sm text-red-600 font-semibold mb-1">6907 Deadlines Reported</p>
+                            <ul class="text-sm space-y-1 ml-4 list-disc text-gray-700">
+                                <li class="text-red-500">Exams: 1287</li>
+                                <!-- More items would go here -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- 3. Bottom Navigation Bar -->
+        <nav class="bg-white border-t border-gray-200 p-2 shadow-lg">
+            <div class="flex justify-around items-center">
+                <!-- Home -->
+                <button data-page="homepage" class="nav-item flex flex-col items-center p-2 text-blue-600 active-nav-item">
+                    <!-- Home Icon -->
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                    <span class="text-xs mt-1 font-semibold">Home</span>
+                </button>
+                <!-- Social -->
+                <button data-page="socialpage" class="nav-item flex flex-col items-center p-2 text-gray-500 hover:text-blue-600 transition">
+                    <!-- Users/Social Icon -->
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    <span class="text-xs mt-1 font-medium">Social</span>
+                </button>
+                <!-- Calendar -->
+                <button data-page="calendarpage" class="nav-item flex flex-col items-center p-2 text-gray-500 hover:text-blue-600 transition">
+                    <!-- Calendar Icon -->
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+                    <span class="text-xs mt-1 font-medium">Calendar</span>
+                </button>
+            </div>
+        </nav>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navItems = document.querySelectorAll('.nav-item');
+            const pageViews = document.querySelectorAll('.page-view');
+
+            /**
+             * Handles switching the active view and navigation link state.
+             * @param {string} targetPageId - The ID of the page section to show.
+             */
+            function setActivePage(targetPageId) {
+                // 1. Hide all page views
+                pageViews.forEach(view => {
+                    view.classList.add('hidden');
+                });
+
+                // 2. Show the target page view
+                const targetPage = document.getElementById(targetPageId);
+                if (targetPage) {
+                    targetPage.classList.remove('hidden');
+                }
+
+                // 3. Update active navigation item styling
+                navItems.forEach(item => {
+                    item.classList.remove('text-blue-600', 'font-semibold', 'active-nav-item');
+                    item.classList.add('text-gray-500', 'font-medium');
+
+                    if (item.getAttribute('data-page') === targetPageId) {
+                        item.classList.add('text-blue-600', 'font-semibold', 'active-nav-item');
+                        item.classList.remove('text-gray-500', 'font-medium');
+                    }
+                });
+            }
+
+            // Set the initial active page to 'homepage' on load
+            setActivePage('homepage');
+
+            // Add click listeners to navigation buttons
+            navItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const targetPageId = item.getAttribute('data-page');
+                    setActivePage(targetPageId);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

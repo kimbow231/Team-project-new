@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study App Wireframe</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Custom Tailwind config for the primary app color */
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'app-bg': '#FFFBEB', /* Light creamy yellow background */
+                        'primary-dark': '#374151', /* Dark text/element color */
+                        'accent-yellow': '#FBBF24',
+                        'accent-red': '#EF4444',
+                        'accent-green': '#10B981',
+                        'accent-blue': '#3B82F6',
+                        'accent-purple': '#8B5CF6',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+
+        /* Basic container styling to simulate a phone screen */
+        .mobile-app-container {
+            max-width: 400px;
+            margin: 0 auto;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            background-color: var(--app-bg);
+            overflow: hidden; /* Hide overflow when pages switch */
+        }
+
+        /* Hide pages by default */
+        .page-content {
+            display: none;
+            flex-grow: 1;
+            padding-bottom: 72px; /* Space for the bottom nav */
+            overflow-y: auto;
+            width: 100%;
+        }
+
+        /* Show the active page */
+        .page-content.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Status Bar Simulation */
+        .status-bar {
+            padding: 8px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            font-weight: 500;
+            color: #1F2937;
+        }
+
+        /* Custom Bee Icon using Emoji, as per the wireframe */
+        .bee-icon {
+            font-size: 48px;
+            animation: buzz 1s infinite alternate;
+        }
+        @keyframes buzz {
+            from { transform: translateY(0); }
+            to { transform: translateY(-5px); }
+        }
+
+        /* Utility for the grid layouts on Home/Following pages */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+    </style>
+</head>
+
+<body class="bg-gray-100 font-sans">
+
+    <div id="app" class="mobile-app-container bg-app-bg">
+        
+        <!-- Status Bar -->
+        <div class="status-bar sticky top-0 bg-app-bg z-10">
+            <div>9:41</div>
+            <div class="flex items-center space-x-1">
+                <i data-lucide="signal-medium" class="w-4 h-4"></i>
+                <i data-lucide="wifi" class="w-4 h-4"></i>
+                <i data-lucide="battery-full" class="w-5 h-5"></i>
+            </div>
+        </div>
+
+        <!-- PAGE: 1. LOG IN / WELCOME -->
+        <div data-page="login" class="page-content active p-6 pt-12 text-primary-dark">
+            <h1 class="text-5xl font-extrabold mb-4">Welcome!</h1>
+            
+            <p class="text-lg mb-8 text-gray-600">
+                Create an account
+                <span class="block text-sm">Enter your email to sign up for this app</span>
+            </p>
+
+            <form class="space-y-4">
+                <input type="email" placeholder="email@domain.com" class="w-full p-3 border border-gray-300 rounded-xl focus:ring-accent-yellow focus:border-accent-yellow transition duration-150 shadow-sm" required>
+                
+                <button type="button" class="w-full bg-primary-dark text-white font-bold py-3 rounded-xl shadow-md hover:bg-gray-700 transition duration-150" onclick="switchPage('home')">
+                    Continue
+                </button>
+            </form>
+
+            <div class="text-center my-6 text-gray-500">
+                OR
+            </div>
+
+            <div class="space-y-3">
+                <!-- Continue with Google -->
+                <button type="button" class="w-full flex items-center justify-center space-x-3 border border-gray-300 bg-white text-primary-dark font-bold py-3 rounded-xl shadow-sm hover:bg-gray-50 transition duration-150">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/32px-Google_%22G%22_logo.svg.png" alt="Google" class="w-5 h-5">
+                    <span>Continue with Google</span>
+                </button>
+                
+                <!-- Continue with Apple -->
+                <button type="button" class="w-full flex items-center justify-center space-x-3 border border-gray-300 bg-white text-primary-dark font-bold py-3 rounded-xl shadow-sm hover:bg-gray-50 transition duration-150">
+                    <i data-lucide="apple" class="w-5 h-5"></i>
+                    <span>Continue with Apple</span>
+                </button>
+            </div>
+
+            <p class="text-xs text-center text-gray-500 mt-8">
+                By clicking continue, you agree to our <a href="#" class="underline font-medium">Terms of Service</a> and <a href="#" class="underline font-medium">Privacy Policy</a>
+            </p>
+            
+            <div class="flex-grow flex items-end justify-center pb-4">
+                <span class="bee-icon">🐝</span>
+            </div>
+        </div>
+
+        <!-- PAGE: 2. HOME PAGE -->
+        <div data-page="home" class="page-content flex flex-col p-4">
+            <!-- Search Bar -->
+            <div class="flex items-center space-x-2 p-2 bg-white rounded-xl border border-gray-200 shadow-sm mb-6">
+                <i data-lucide="search" class="w-5 h-5 text-gray-400"></i>
+                <input type="text" placeholder="Search" class="flex-grow bg-transparent focus:outline-none text-lg">
+                <i data-lucide="x" class="w-5 h-5 text-gray-400 cursor-pointer"></i>
+                <i data-lucide="mic" class="w-5 h-5 text-gray-400 cursor-pointer"></i>
+            </div>
+            
+            <h2 class="text-xl font-bold mb-4 text-primary-dark">My sets</h2>
+            
+            <!-- My Sets Grid -->
+            <div class="card-grid mb-8">
+                <!-- Math Set -->
+                <div class="aspect-square bg-red-500 p-4 rounded-xl shadow-lg flex flex-col justify-between text-white">
+                    <i data-lucide="calculator" class="w-8 h-8"></i>
+                    <p class="text-xl font-bold">Math Set 1</p>
+                    <p class="text-sm font-semibold">12 terms</p>
+                </div>
+                <!-- History Set -->
+                <div class="aspect-square bg-yellow-600 p-4 rounded-xl shadow-lg flex flex-col justify-between text-white">
+                    <i data-lucide="book-open-text" class="w-8 h-8"></i>
+                    <p class="text-xl font-bold">History Set 1</p>
+                    <p class="text-sm font-semibold">18 terms</p>
+                </div>
+                <!-- English Set -->
+                <div class="aspect-square bg-green-500 p-4 rounded-xl shadow-lg flex flex-col justify-between text-white">
+                    <i data-lucide="align-left" class="w-8 h-8"></i>
+                    <p class="text-xl font-bold">English Set 1</p>
+                    <p class="text-sm font-semibold">22 terms</p>
+                </div>
+                <!-- Add New Set -->
+                <div class="aspect-square bg-gray-200 p-4 rounded-xl border-2 border-dashed border-gray-400 flex items-center justify-center hover:bg-gray-300 transition duration-150 cursor-pointer">
+                    <i data-lucide="plus" class="w-10 h-10 text-gray-600"></i>
+                </div>
+            </div>
+
+            <h2 class="text-xl font-bold mb-4 text-primary-dark">Explore</h2>
+
+            <!-- Explore Sets Grid -->
+            <div class="card-grid flex-grow">
+                <!-- User 1 Set -->
+                <div class="aspect-square bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex flex-col justify-between text-primary-dark">
+                    <div class="flex items-center justify-between">
+                        <i data-lucide="user" class="w-6 h-6 text-accent-blue"></i>
+                        <p class="text-xs text-gray-500">12 terms</p>
+                    </div>
+                    <p class="text-lg font-semibold mt-4">User 1 set</p>
+                </div>
+                <!-- User 2 Set -->
+                <div class="aspect-square bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex flex-col justify-between text-primary-dark">
+                    <div class="flex items-center justify-between">
+                        <i data-lucide="users" class="w-6 h-6 text-accent-purple"></i>
+                        <p class="text-xs text-gray-500">9 terms</p>
+                    </div>
+                    <p class="text-lg font-semibold mt-4">User 2 set</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE: 3. FOLLOWING PAGE -->
+        <div data-page="following" class="page-content flex flex-col p-4">
+            <div class="text-xl font-bold mb-4 text-primary-dark">Following page</div>
+            <!-- Search Bar -->
+            <div class="flex items-center space-x-2 p-2 bg-white rounded-xl border border-gray-200 shadow-sm mb-6">
+                <i data-lucide="search" class="w-5 h-5 text-gray-400"></i>
+                <input type="text" placeholder="Find people" class="flex-grow bg-transparent focus:outline-none text-lg">
+                <i data-lucide="x" class="w-5 h-5 text-gray-400 cursor-pointer"></i>
+            </div>
+
+            <!-- Following Avatars -->
+            <h2 class="text-lg font-semibold mb-3 text-primary-dark">Following</h2>
+            <div class="flex space-x-3 overflow-x-auto pb-4 mb-6 border-b border-gray-200">
+                <!-- User 1 -->
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center text-sm font-bold text-gray-600 border-2 border-accent-blue">@</div>
+                    <p class="text-xs mt-1 text-gray-600">@GreekDod</p>
+                </div>
+                <!-- User 2 -->
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center text-sm font-bold text-gray-600">@ArtGuy34</div>
+                    <p class="text-xs mt-1 text-gray-600">@ArtGuy34</p>
+                </div>
+                <!-- User 3 -->
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center text-sm font-bold text-gray-600">@MyHistProf</div>
+                    <p class="text-xs mt-1 text-gray-600">@MyHistProf</p>
+                </div>
+                <!-- User 4 -->
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center text-sm font-bold text-gray-600">@Learns</div>
+                    <p class="text-xs mt-1 text-gray-600">@Learns</p>
+                </div>
+                <!-- User 5 -->
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center text-sm font-bold text-gray-600">@GodsSets</div>
+                    <p class="text-xs mt-1 text-gray-600">@GodsSets</p>
+                </div>
+            </div>
+
+            <!-- Sets from Following -->
+            <h2 class="text-lg font-semibold mb-3 text-primary-dark">@GreekDod's sets</h2>
+            <div class="space-y-4 flex-grow">
+                <!-- Greek/Latin Roots Set -->
+                <div class="flex items-center space-x-3 bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
+                    <div class="w-16 h-16 bg-accent-blue rounded-lg flex items-center justify-center text-white text-xs font-bold p-1 text-center leading-tight">
+                        Greek and Latin Roots
+                    </div>
+                    <div>
+                        <p class="font-semibold text-primary-dark">Greek and Latin Roots</p>
+                        <p class="text-sm text-gray-500">@GreekDod</p>
+                    </div>
+                </div>
+                <!-- Green/Blue Card Set -->
+                <div class="flex items-center space-x-3 bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
+                    <div class="w-16 h-16 bg-accent-green rounded-lg flex items-center justify-center text-white text-xs font-bold p-1 text-center leading-tight bg-cover bg-center" style="background-image: url('https://placehold.co/64x64/22c55e/ffffff?text=Greek+Avt.')">
+                        <!-- Placeholder image simulating content preview -->
+                    </div>
+                    <div>
+                        <p class="font-semibold text-primary-dark">GREEK AVTHOLOGY</p>
+                        <p class="text-sm text-gray-500">@GreekDod</p>
+                    </div>
+                </div>
+                 <!-- Latin Revolutions Set -->
+                <div class="flex items-center space-x-3 bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
+                    <div class="w-16 h-16 bg-accent-red rounded-lg flex items-center justify-center text-white text-xs font-bold p-1 text-center leading-tight">
+                        LATIN REVOLUTIONS
+                    </div>
+                    <div>
+                        <p class="font-semibold text-primary-dark">Latin Revolutions</p>
+                        <p class="text-sm text-gray-500">@GreekDod</p>
+                    </div>
+                </div>
+
+                <h2 class="text-lg font-semibold mb-3 pt-2 text-primary-dark">@ArtGuy34's sets</h2>
+                <!-- Artists of Realism Set -->
+                <div class="flex items-center space-x-3 bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
+                    <div class="w-16 h-16 bg-gray-600 rounded-lg flex items-center justify-center text-white text-xs font-bold p-1 text-center leading-tight bg-cover bg-center" style="background-image: url('https://placehold.co/64x64/4B5563/ffffff?text=Art+Set')">
+                        <!-- Placeholder image simulating content preview -->
+                    </div>
+                    <div>
+                        <p class="font-semibold text-primary-dark">Artists of Realism</p>
+                        <p class="text-sm text-gray-500">@ArtGuy34</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- PAGE: 4. CALENDAR PAGE -->
+        <div data-page="calendar" class="page-content flex flex-col p-4">
+            <div class="flex items-center justify-between mb-4 text-primary-dark">
+                <div class="flex space-x-2 text-lg font-bold">
+                    <span class="border-b-2 border-primary-dark">Week</span>
+                    <span class="text-gray-400 hover:text-primary-dark cursor-pointer">Month</span>
+                </div>
+                <div class="flex items-center space-x-2 text-lg font-bold">
+                    <i data-lucide="chevron-left" class="w-5 h-5 cursor-pointer"></i>
+                    <span>January</span>
+                    <i data-lucide="chevron-right" class="w-5 h-5 cursor-pointer"></i>
+                </div>
+            </div>
+
+            <!-- Calendar Grid -->
+            <div class="grid grid-cols-7 gap-2 p-3 bg-white rounded-xl shadow-md mb-6 border border-gray-200">
+                <div class="text-center text-sm font-semibold text-gray-500">S</div>
+                <div class="text-center text-sm font-semibold text-primary-dark">M</div>
+                <div class="text-center text-sm font-semibold text-primary-dark">T</div>
+                <div class="text-center text-sm font-semibold text-primary-dark">W</div>
+                <div class="text-center text-sm font-semibold text-primary-dark">T</div>
+                <div class="text-center text-sm font-semibold text-primary-dark">F</div>
+                <div class="text-center text-sm font-semibold text-gray-500">S</div>
+
+                <!-- Week 1 -->
+                <div class="h-8 w-full"></div>
+                <div class="h-8 w-full flex items-center justify-center text-gray-400">1</div>
+                <div class="h-8 w-full flex items-center justify-center text-gray-400">2</div>
+                <div class="h-8 w-full flex items-center justify-center text-gray-400">3</div>
+                <div class="h-8 w-full flex items-center justify-center text-gray-400">4</div>
+                <div class="h-8 w-full flex items-center justify-center text-gray-400">5</div>
+                <div class="h-8 w-full flex items-center justify-center text-gray-400">6</div>
+                
+                <!-- Week 2 -->
+                <div class="h-8 w-full flex items-center justify-center text-gray-400">7</div>
+                <div class="h-8 w-full flex items-center justify-center text-white bg-red-400 rounded-full">8</div>
+                <div class="h-8 w-full flex items-center justify-center text-white bg-green-400 rounded-full">9</div>
+                <div class="h-8 w-full flex items-center justify-center text-primary-dark">10</div>
+                <div class="h-8 w-full flex items-center justify-center text-white bg-blue-400 rounded-full">11</div>
+                <div class="h-8 w-full flex items-center justify-center text-primary-dark">12</div>
+                <div class="h-8 w-full flex items-center justify-center text-gray-500">13</div>
+
+                <!-- Week 3 (Current Week) -->
+                <div class="h-8 w-full flex items-center justify-center text-gray-500">14</div>
+                <div class="h-8 w-full flex items-center justify-center text-primary-dark">15</div>
+                <div class="h-8 w-full flex items-center justify-center text-primary-dark">16</div>
+                <div class="h-8 w-full flex items-center justify-center text-white bg-red-500 rounded-full border-2 border-primary-dark ring-2 ring-primary-dark">17</div>
+                <div class="h-8 w-full flex items-center justify-center text-primary-dark">18</div>
+                <div class="h-8 w-full flex items-center justify-center text-primary-dark">19</div>
+                <div class="h-8 w-full flex items-center justify-center text-gray-500">20</div>
+            </div>
+
+            <h2 class="text-xl font-bold mb-4 text-primary-dark">January 2, 2025</h2>
+
+            <!-- Schedule Items -->
+            <div class="space-y-4 flex-grow">
+                <!-- Study Math -->
+                <div class="bg-white p-4 rounded-xl border-l-4 border-red-500 shadow-md">
+                    <p class="text-sm font-bold text-red-500 mb-1">1 PM: Study math for 1 hour</p>
+                    <p class="text-primary-dark">Note: Integrals and Math set 3</p>
+                </div>
+
+                <!-- Read Chapter 3 -->
+                <div class="bg-white p-4 rounded-xl border-l-4 border-blue-500 shadow-md">
+                    <p class="text-sm font-bold text-blue-500 mb-1">3 PM: Read chapter 3 of To Kill a Mocking Bird</p>
+                    <p class="text-primary-dark">Note: Write down important character development</p>
+                </div>
+
+                <!-- Open Spot -->
+                <div class="bg-white p-4 rounded-xl border-l-4 border-gray-300 shadow-md flex items-center justify-between">
+                    <p class="text-sm font-bold text-gray-500">7 PM: Open slot</p>
+                    <i data-lucide="plus" class="w-5 h-5 text-gray-500 cursor-pointer"></i>
+                </div>
+            </div>
+        </div>
+        
+        <!-- PAGE: 5. AI PAGE -->
+        <div data-page="ai" class="page-content flex flex-col items-center justify-center p-6 text-center">
+            <h1 class="text-4xl font-extrabold text-primary-dark mb-12">What can I <span class="block">help you with?</span></h1>
+            
+            <div class="w-full max-w-sm">
+                <!-- AI Input -->
+                <div class="flex items-center space-x-3 p-3 bg-white rounded-2xl border border-gray-300 shadow-md mb-8">
+                    <input type="text" placeholder="Ask AI" class="flex-grow bg-transparent focus:outline-none text-lg text-primary-dark placeholder-gray-400">
+                    <i data-lucide="send" class="w-6 h-6 text-accent-blue cursor-pointer"></i>
+                </div>
+            
+                <!-- Action Buttons -->
+                <div class="space-y-3">
+                    <button class="w-full bg-primary-dark text-white font-semibold py-3 rounded-xl shadow-md hover:opacity-90 transition duration-150">
+                        Add to schedule
+                    </button>
+                    <button class="w-full bg-white border border-primary-dark text-primary-dark font-semibold py-3 rounded-xl shadow-md hover:bg-gray-100 transition duration-150">
+                        Create flashcards
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- PAGE: 6. PROFILE PAGE -->
+        <div data-page="profile" class="page-content flex flex-col p-6">
+            
+            <!-- Profile Header -->
+            <div class="flex items-center space-x-4 mb-8">
+                <div class="w-16 h-16 bg-gray-300 rounded-full flex items-center justify-center">
+                    <i data-lucide="user" class="w-8 h-8 text-gray-500"></i>
+                </div>
+                <div>
+                    <p class="text-xl font-bold text-primary-dark">@AristotleFan45</p>
+                    <div class="flex space-x-4 text-sm mt-1 text-gray-600">
+                        <p><span class="font-bold text-primary-dark">1.5K</span> Followers</p>
+                        <p><span class="font-bold text-primary-dark">200</span> Following</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Account Menu -->
+            <h2 class="text-lg font-bold mb-2 text-primary-dark">Account Info</h2>
+            <div class="bg-white rounded-xl shadow-md divide-y divide-gray-100 border border-gray-200 mb-8">
+                <div class="p-4 flex justify-between items-center hover:bg-gray-50 cursor-pointer">
+                    <span class="text-primary-dark">Settings</span>
+                    <i data-lucide="chevron-right" class="w-5 h-5 text-gray-400"></i>
+                </div>
+                <div class="p-4 flex justify-between items-center hover:bg-gray-50 cursor-pointer">
+                    <span class="text-primary-dark">Account Privacy</span>
+                    <i data-lucide="chevron-right" class="w-5 h-5 text-gray-400"></i>
+                </div>
+                <div class="p-4 flex justify-between items-center hover:bg-gray-50 cursor-pointer">
+                    <span class="text-primary-dark">Rating</span>
+                    <i data-lucide="chevron-right" class="w-5 h-5 text-gray-400"></i>
+                </div>
+            </div>
+
+            <!-- Support Menu -->
+            <h2 class="text-lg font-bold mb-2 text-primary-dark">Support</h2>
+            <div class="bg-white rounded-xl shadow-md divide-y divide-gray-100 border border-gray-200">
+                <div class="p-4 flex justify-between items-center hover:bg-gray-50 cursor-pointer">
+                    <span class="text-primary-dark">Help</span>
+                    <i data-lucide="chevron-right" class="w-5 h-5 text-gray-400"></i>
+                </div>
+                <div class="p-4 flex justify-between items-center hover:bg-gray-50 cursor-pointer">
+                    <span class="text-red-500 font-semibold">Log out</span>
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- BOTTOM NAVIGATION BAR (Sticky) -->
+        <div id="nav-bar" class="fixed bottom-0 w-full max-w-sm bg-white border-t border-gray-200 p-3 shadow-2xl rounded-t-2xl z-20">
+            <div class="flex justify-around">
+                <!-- Home -->
+                <button class="nav-item flex flex-col items-center p-1 rounded-lg transition duration-150" data-target="home">
+                    <i data-lucide="home" class="w-6 h-6 text-gray-400"></i>
+                    <span class="text-xs text-gray-400 mt-1">Home</span>
+                </button>
+                <!-- Following -->
+                <button class="nav-item flex flex-col items-center p-1 rounded-lg transition duration-150" data-target="following">
+                    <i data-lucide="users" class="w-6 h-6 text-gray-400"></i>
+                    <span class="text-xs text-gray-400 mt-1">People</span>
+                </button>
+                <!-- Calendar -->
+                <button class="nav-item flex flex-col items-center p-1 rounded-lg transition duration-150" data-target="calendar">
+                    <i data-lucide="calendar" class="w-6 h-6 text-gray-400"></i>
+                    <span class="text-xs text-gray-400 mt-1">Calendar</span>
+                </button>
+                <!-- AI -->
+                <button class="nav-item flex flex-col items-center p-1 rounded-lg transition duration-150" data-target="ai">
+                    <i data-lucide="bot" class="w-6 h-6 text-gray-400"></i>
+                    <span class="text-xs text-gray-400 mt-1">AI</span>
+                </button>
+                <!-- Profile -->
+                <button class="nav-item flex flex-col items-center p-1 rounded-lg transition duration-150" data-target="profile">
+                    <i data-lucide="user" class="w-6 h-6 text-gray-400"></i>
+                    <span class="text-xs text-gray-400 mt-1">Profile</span>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        // --- JavaScript for Page/View Switching ---
+
+        const pages = document.querySelectorAll('.page-content');
+        const navItems = document.querySelectorAll('.nav-item');
+        const defaultPage = 'login'; // Start on the Login page
+        
+        // Function to switch the active page
+        function switchPage(targetPageId) {
+            // 1. Hide all pages
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // 2. Show the target page
+            const targetPage = document.querySelector(`[data-page="${targetPageId}"]`);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+
+            // 3. Update navigation bar state
+            navItems.forEach(item => {
+                const icon = item.querySelector('i');
+                const text = item.querySelector('span');
+                
+                if (item.getAttribute('data-target') === targetPageId) {
+                    // Active state styling
+                    icon.classList.remove('text-gray-400');
+                    icon.classList.add('text-primary-dark');
+                    text.classList.remove('text-gray-400');
+                    text.classList.add('text-primary-dark', 'font-bold');
+                } else {
+                    // Inactive state styling
+                    icon.classList.add('text-gray-400');
+                    icon.classList.remove('text-primary-dark');
+                    text.classList.add('text-gray-400');
+                    text.classList.remove('text-primary-dark', 'font-bold');
+                }
+            });
+            
+            // 4. Hide nav bar on Login/Welcome screen
+            const navBar = document.getElementById('nav-bar');
+            if (targetPageId === 'login') {
+                navBar.classList.add('hidden');
+            } else {
+                navBar.classList.remove('hidden');
+            }
+        }
+        
+        // Add click listeners to navigation items
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const targetId = item.getAttribute('data-target');
+                switchPage(targetId);
+            });
+        });
+
+        // Initialize the app on the default page
+        switchPage(defaultPage);
+        
+        // If the user navigates past the login screen, set the home button to active visually
+        const homeNavButton = document.querySelector('.nav-item[data-target="home"]');
+        if (homeNavButton) {
+            // This ensures the initial state after 'Continue' button on login is correct
+            homeNavButton.click(); 
+        }
+
+    </script>
+</body>
+</html>
